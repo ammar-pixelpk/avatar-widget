@@ -38,16 +38,14 @@ deployment-package/
 │   ├── index.js                   # Main entry point
 │   └── README.md                  # npm usage guide
 │
-├── 📁 widget-files/               # Raw widget files
-│   ├── widget.umd.js              # Built widget (610KB)
-│   ├── widget.css                 # Bundled styles
-│   └── embed.d.ts                 # TypeScript definitions
+├── 📁 assets/                     # Widget files
+│   ├── avatar-widget.umd.js       # Built widget (610KB)
+│   └── ai-avatar.css              # Bundled styles (82KB)
 │
-├── 📁 examples/                   # Ready-to-use examples
-│   ├── basic-example.html         # Minimal implementation
-│   ├── advanced-example.html      # Full configuration
-│   ├── debug.html                 # Debugging template
-│   └── wizard.html               # Visual setup guide
+├── � simple-example.html         # Minimal one-line integration
+├── 📄 production-ready-example.html # Full-featured demo
+├── 📄 installer.js                # One-line installer script
+└── 📄 installer-v1.0.1.js        # Cache-safe versioned installer
 │
 └── 📁 installers/                # Automated installers
     ├── installer.js              # One-line script installer
