@@ -28,8 +28,8 @@
     
     // CDN URLs - GitHub repository via JSDelivr
     const CDN_BASE = 'https://cdn.jsdelivr.net/gh/ammar-pixelpk/avatar-widget@main';
-    const CSS_URL = `${CDN_BASE}/dist/widget.css`;
-    const WIDGET_URL = `${CDN_BASE}/dist/widget.umd.js`;
+    const CSS_URL = `${CDN_BASE}/assets/ai-avatar.css`;
+    const WIDGET_URL = `${CDN_BASE}/assets/avatar-widget.umd.js`;
     const REACT_URL = 'https://unpkg.com/react@18/umd/react.production.min.js';
     const REACT_DOM_URL = 'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js';
     
