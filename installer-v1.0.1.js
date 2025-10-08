@@ -1,15 +1,15 @@
 /**
- * AvatarWidget Auto-Installer
+ * AvatarWidget Auto-Installer - Version 1.0.1
  * One-line installation script for easy integration
  * 
- * Usage: <script src="https://your-cdn.com/installer.js" data-knowledge-id="your-id"></script>
+ * Usage: <script src="https://cdn.jsdelivr.net/gh/ammar-pixelpk/avatar-widget@20b756e/installer-v1.0.1.js" data-knowledge-id="your-id"></script>
  */
 
 (function() {
     'use strict';
     
     // Get the current script element to read data attributes
-    const currentScript = document.currentScript || document.querySelector('script[src*="installer.js"]');
+    const currentScript = document.currentScript || document.querySelector('script[src*="installer"]');
     
     if (!currentScript) {
         console.error('AvatarWidget: Could not find installer script element');
@@ -26,11 +26,11 @@
         size: currentScript.getAttribute('data-size') || 'medium'
     };
     
-    // CDN URLs - GitHub repository via JSDelivr
-    // Version 1.0.1 - Fixed CDN paths and cache handling
-    const CDN_BASE = 'https://cdn.jsdelivr.net/gh/ammar-pixelpk/avatar-widget@main';
-    const CSS_URL = `${CDN_BASE}/assets/ai-avatar.css?v=1.0.1`;
-    const WIDGET_URL = `${CDN_BASE}/assets/avatar-widget.umd.js?v=1.0.1`;
+    // CDN URLs - Using specific commit hash for cache reliability
+    const COMMIT_HASH = '20b756e32225cffd975585c3c7e8fef8f9a993ec';
+    const CDN_BASE = `https://cdn.jsdelivr.net/gh/ammar-pixelpk/avatar-widget@${COMMIT_HASH}`;
+    const CSS_URL = `${CDN_BASE}/assets/ai-avatar.css`;
+    const WIDGET_URL = `${CDN_BASE}/assets/avatar-widget.umd.js`;
     const REACT_URL = 'https://unpkg.com/react@18/umd/react.production.min.js';
     const REACT_DOM_URL = 'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js';
     
@@ -56,7 +56,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             transition: all 0.3s ease;
         `;
-        status.textContent = '🤖 Loading AI Assistant...';
+        status.textContent = '🤖 Loading AI Assistant v1.0.1...';
         document.body.appendChild(status);
         return status;
     }
@@ -152,9 +152,9 @@
             // Render the widget
             window.renderAvatarWidget('auto-avatar-widget', config);
             
-            updateStatus('✅ AI Assistant Ready!', true);
+            updateStatus('✅ AI Assistant Ready! v1.0.1', true);
             
-            console.log('AvatarWidget initialized successfully with config:', config);
+            console.log('AvatarWidget v1.0.1 initialized successfully with config:', config);
             
         } catch (error) {
             console.error('AvatarWidget initialization failed:', error);
@@ -208,7 +208,7 @@
             `;
             fallback.innerHTML = `
                 <strong>AI Assistant Error</strong><br>
-                Failed to load. Please check your internet connection or contact support.
+                Failed to load v1.0.1. Please check your internet connection or contact support.
                 <button onclick="this.parentElement.remove()" style="float: right; background: none; border: none; color: white; cursor: pointer; font-size: 18px;">×</button>
             `;
             document.body.appendChild(fallback);

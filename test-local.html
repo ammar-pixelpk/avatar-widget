@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Test - Direct Files</title>
+    
+    <!-- Load CSS directly -->
+    <link rel="stylesheet" href="./assets/ai-avatar.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Local Direct File Test</h1>
+        <p>This test loads the widget files directly from your local assets folder.</p>
+        
+        <div id="loading-status" class="status" style="background: #d1ecf1; color: #0c5460;">
+            🤖 Loading AI Assistant...
+        </div>
+        
+        <div id="widget-status"></div>
+        
+        <h2>Expected Results:</h2>
+        <ul>
+            <li>Purple chat button in bottom-right corner</li>
+            <li>No console errors</li>
+            <li>Status changes to "AI Assistant Ready!"</li>
+        </ul>
+    </div>
+
+    <!-- Widget container -->
+    <div id="avatar-chat" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
+
+    <!-- React dependencies from CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Widget bundle from local files -->
+    <script src="./assets/avatar-widget.umd.js"></script>
+    
+    <!-- Initialize widget -->
+    <script>
+        const statusEl = document.getElementById('loading-status');
+        const widgetStatusEl = document.getElementById('widget-status');
+        
+        function updateStatus(message, isSuccess = false) {
+            statusEl.textContent = message;
+            statusEl.className = isSuccess ? 'status success' : 'status';
+        }
+        
+        function initializeWidget() {
+            try {
+                // Check if dependencies loaded
+                if (typeof window.React === 'undefined') {
+                    throw new Error('React not loaded');
+                }
+                if (typeof window.ReactDOM === 'undefined') {
+                    throw new Error('ReactDOM not loaded');
+                }
+                if (typeof window.renderAvatarWidget !== 'function') {
+                    throw new Error('AvatarWidget function not found');
+                }
+                
+                // Initialize widget
+                window.renderAvatarWidget('avatar-chat', {
+                    knowledgeID: '68e604b9028f2f5066e31678',
+                    avatarId: 'Tyler-insuit-20220721',
+                    openingMessage: 'Hello! How can I help you today?'
+                });
+                
+                updateStatus('✅ AI Assistant Ready!', true);
+                widgetStatusEl.innerHTML = '<div class="status success">✅ Widget loaded successfully from local files!</div>';
+                
+            } catch (error) {
+                console.error('Widget initialization failed:', error);
+                updateStatus('❌ Failed to initialize widget');
+                widgetStatusEl.innerHTML = `<div class="status error">❌ Error: ${error.message}</div>`;
+            }
+        }
+        
+        // Wait for all scripts to load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStatus('📦 Loading dependencies...');
+            
+            // Small delay to ensure scripts are executed
+            setTimeout(() => {
+                initializeWidget();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
