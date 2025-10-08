@@ -27,7 +27,7 @@
     };
     
     // CDN URLs - Using specific commit hash for cache reliability
-    const COMMIT_HASH = '20b756e32225cffd975585c3c7e8fef8f9a993ec';
+    const COMMIT_HASH = '1eb2755378eddc7804f015fb718c098a1739b15d';
     const CDN_BASE = `https://cdn.jsdelivr.net/gh/ammar-pixelpk/avatar-widget@${COMMIT_HASH}`;
     const CSS_URL = `${CDN_BASE}/assets/ai-avatar.css`;
     const WIDGET_URL = `${CDN_BASE}/assets/avatar-widget.umd.js`;
