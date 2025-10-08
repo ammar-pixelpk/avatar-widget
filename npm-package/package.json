@@ -2,13 +2,14 @@
   "name": "@pixelpk/avatar-widget",
   "version": "1.0.0",
   "description": "Easy-to-integrate AI avatar widget for websites",
-  "main": "dist/widget.umd.js",
-  "module": "dist/widget.es.js",
-  "types": "dist/embed.d.ts",
+  "main": "index.js",
+  "module": "index.js",
+  "browser": "dist/avatar-widget.umd.js",
   "files": [
     "dist",
-    "README.md",
-    "LICENSE"
+    "index.js",
+    "install.js",
+    "README.md"
   ],
   "scripts": {
     "install-widget": "node install.js",

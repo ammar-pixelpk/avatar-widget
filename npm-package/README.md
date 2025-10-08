@@ -1,13 +1,49 @@
-# @pixelpk/avatar-widget
+# AI Avatar Widget - npm Package
 
-Easy-to-integrate AI avatar widget for websites. Add intelligent chat support to your site with just a few lines of code.
+Easy-to-integrate AI avatar widget for websites and React applications.
 
-## 🚀 Quick Start
-
-### Installation
+## 📦 Installation
 
 ```bash
 npm install @pixelpk/avatar-widget
+```
+
+## 🚀 Quick Start
+
+### For React Applications
+
+```jsx
+import AvatarWidget from '@pixelpk/avatar-widget/AvatarWidget.jsx';
+
+function App() {
+  return (
+    <div>
+      <h1>My App</h1>
+      <AvatarWidget 
+        knowledgeID="your-knowledge-id"
+        openingMessage="Hello! How can I help?"
+      />
+    </div>
+  );
+}
+```
+
+### For Vanilla JavaScript
+
+```javascript
+import { loadAvatarWidget } from '@pixelpk/avatar-widget';
+
+// Initialize widget
+loadAvatarWidget('avatar-container', {
+  knowledgeID: 'your-knowledge-id',
+  avatarId: 'Tyler-insuit-20220721',
+  openingMessage: 'Hello! How can I help you today?'
+});
+```
+
+```html
+<!-- Add container in your HTML -->
+<div id="avatar-container"></div>
 ```
 
 ### Usage

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AvatarWidget Integration</title>
+    <!-- Widget styles -->
+    <link rel="stylesheet" href="./node_modules/avatar-widget-embed/dist/ai-avatar.css">
+</head>
+<body>
+    <h1>My Website</h1>
+    <p>Your content here...</p>
+
+    <!-- Widget container -->
+    <div id="ai-chat" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
+
+    <!-- React dependencies -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Widget bundle -->
+    <script src="./node_modules/avatar-widget-embed/dist/avatar-widget.umd.js"></script>
+    
+    <!-- Initialize widget -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.renderAvatarWidget('ai-chat', {
+                knowledgeID: '68e604b9028f2f5066e31678',
+                avatarId: 'Tyler-insuit-20220721',
+                openingMessage: 'Hello! How can I help you today?'
+            });
+        });
+    </script>
+</body>
+</html>
