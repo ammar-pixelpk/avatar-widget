@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Widget Integration</title>
+    
+    <!-- Widget Styles from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ammar-pixelpk/avatar-widget@main/dist/widget.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Widget positioned in bottom-right corner */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>My Simple Website</h1>
+        <p>This is a minimal example of integrating the AvatarWidget into your existing website.</p>
+        <p>Look for the purple chat button in the bottom-right corner!</p>
+        
+        <h2>Your Content Here</h2>
+        <p>Add all your existing website content here. The chat widget will appear as a floating button that your visitors can click to start chatting with the AI assistant.</p>
+    </div>
+
+    <!-- Chat Widget Container -->
+    <div class="chat-widget">
+        <div id="avatar-chat"></div>
+    </div>
+
+    <!-- React Dependencies -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Widget Bundle from CDN -->
+    <script src="https://cdn.jsdelivr.net/gh/ammar-pixelpk/avatar-widget@main/dist/widget.umd.js"></script>
+    
+    <!-- Initialize Widget -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Replace 'YOUR_KNOWLEDGE_ID' with your actual knowledge base ID
+            window.renderAvatarWidget('avatar-chat', {
+                knowledgeID: '68e604b9028f2f5066e31678', // ← Change this!
+                avatarId: 'Tyler-insuit-20220721',
+                openingMessage: 'Hi there! How can I help you today?'
+            });
+        });
+    </script>
+</body>
+</html>

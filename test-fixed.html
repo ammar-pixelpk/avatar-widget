@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed - Minimal Test</title>
+    
+    <!-- Widget Styles -->
+    <link rel="stylesheet" href="./assets/ai-avatar.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .status {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .loading { background: #d1ecf1; color: #0c5460; }
+        
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        .highlight {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .feature {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #7559FF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 <span class="highlight">Widget Fixed!</span></h1>
+        <p>The <code>process is not defined</code> error has been resolved.</p>
+        
+        <div id="status" class="status loading">
+            🔄 Initializing AI Assistant...
+        </div>
+        
+        <div class="feature">
+            <h3>✅ What was fixed:</h3>
+            <ul style="text-align: left;">
+                <li><strong>process.env</strong> - Defined for browser compatibility</li>
+                <li><strong>global</strong> - Mapped to globalThis</li>
+                <li><strong>NODE_ENV</strong> - Set to production</li>
+            </ul>
+        </div>
+        
+        <div class="feature">
+            <h3>🎯 Expected Result:</h3>
+            <p>You should see a <strong>purple chat button</strong> in the bottom-right corner without any console errors!</p>
+        </div>
+        
+        <div class="feature">
+            <h3>🔍 Check DevTools:</h3>
+            <p>Press <kbd>F12</kbd> → Console tab. You should see <span style="color: green;">"✅ Widget loaded successfully!"</span></p>
+        </div>
+    </div>
+
+    <!-- Chat Widget Container -->
+    <div class="chat-widget">
+        <div id="ai-chat-fixed"></div>
+    </div>
+
+    <!-- React Dependencies -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Fixed Widget Bundle -->
+    <script src="./assets/avatar-widget.umd.js"></script>
+    
+    <script>
+        function updateStatus(message, type = 'loading') {
+            const statusEl = document.getElementById('status');
+            statusEl.className = `status ${type}`;
+            statusEl.innerHTML = message;
+        }
+        
+        // Enhanced error catching
+        window.addEventListener('error', function(e) {
+            console.error('❌ Error caught:', e.error);
+            updateStatus(`❌ Error: ${e.message}`, 'error');
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                updateStatus('🔍 Checking React...', 'loading');
+                
+                if (typeof React === 'undefined') {
+                    throw new Error('React not loaded');
+                }
+                
+                if (typeof ReactDOM === 'undefined') {
+                    throw new Error('ReactDOM not loaded');
+                }
+                
+                updateStatus('🔍 Checking widget function...', 'loading');
+                
+                if (typeof window.renderAvatarWidget !== 'function') {
+                    throw new Error('Widget function not available');
+                }
+                
+                updateStatus('🚀 Rendering widget...', 'loading');
+                
+                // Render the widget
+                window.renderAvatarWidget('ai-chat-fixed', {
+                    knowledgeID: '68e604b9028f2f5066e31678',
+                    avatarId: 'Tyler-insuit-20220721',
+                    openingMessage: '🎉 Success! The widget is now working perfectly!'
+                });
+                
+                updateStatus('✅ Widget loaded successfully! Check the bottom-right corner! 🎯', 'success');
+                console.log('✅ Widget loaded successfully!');
+                
+            } catch (error) {
+                console.error('❌ Widget initialization failed:', error);
+                updateStatus(`❌ Failed: ${error.message}`, 'error');
+            }
+        });
+    </script>
+</body>
+</html>

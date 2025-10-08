@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Widget Integration</title>
+    
+    <!-- Widget Styles -->
+    <link rel="stylesheet" href="./assets/ai-avatar.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .debug-panel {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .warning { background: #fff3cd; color: #856404; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .test-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>🐛 AvatarWidget Debug Page</h1>
+    
+    <div class="debug-panel">
+        <h3>Debug Information</h3>
+        <div id="debug-log"></div>
+        
+        <h4>Manual Tests</h4>
+        <button class="test-button" onclick="testReactLoaded()">Test React</button>
+        <button class="test-button" onclick="testWidgetLoaded()">Test Widget</button>
+        <button class="test-button" onclick="testRenderWidget()">Test Render</button>
+        <button class="test-button" onclick="clearLog()">Clear Log</button>
+    </div>
+
+    <!-- Chat Widget Container -->
+    <div class="chat-widget">
+        <div id="avatar-chat-debug"></div>
+    </div>
+
+    <!-- React Dependencies -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Widget Bundle -->
+    <script src="./assets/avatar-widget.umd.js"></script>
+    
+    <!-- Debug Script -->
+    <script>
+        let logCount = 0;
+        
+        function log(message, type = 'info') {
+            logCount++;
+            const debugLog = document.getElementById('debug-log');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.className = `status ${type}`;
+            logEntry.innerHTML = `[${timestamp}] ${message}`;
+            debugLog.appendChild(logEntry);
+            console.log(`[DEBUG] ${message}`);
+            
+            // Auto-scroll to bottom
+            debugLog.scrollTop = debugLog.scrollHeight;
+        }
+        
+        function clearLog() {
+            document.getElementById('debug-log').innerHTML = '';
+            logCount = 0;
+        }
+        
+        function testReactLoaded() {
+            if (typeof React !== 'undefined' && typeof ReactDOM !== 'undefined') {
+                log('✅ React and ReactDOM loaded successfully', 'success');
+                log(`React version: ${React.version}`, 'info');
+            } else {
+                log('❌ React or ReactDOM not loaded', 'error');
+            }
+        }
+        
+        function testWidgetLoaded() {
+            if (typeof window.renderAvatarWidget === 'function') {
+                log('✅ AvatarWidget function available', 'success');
+            } else {
+                log('❌ AvatarWidget function not available', 'error');
+                log('Available window properties: ' + Object.keys(window).filter(k => k.includes('render')), 'info');
+            }
+        }
+        
+        function testRenderWidget() {
+            try {
+                if (typeof window.renderAvatarWidget === 'function') {
+                    log('🚀 Attempting to render widget...', 'info');
+                    
+                    // Clear the container first
+                    const container = document.getElementById('avatar-chat-debug');
+                    container.innerHTML = '';
+                    
+                    window.renderAvatarWidget('avatar-chat-debug', {
+                        knowledgeID: '68e604b9028f2f5066e31678',
+                        avatarId: 'Tyler-insuit-20220721',
+                        openingMessage: 'Debug test widget!'
+                    });
+                    
+                    log('✅ Widget render function called successfully', 'success');
+                    
+                    // Check if something was rendered
+                    setTimeout(() => {
+                        if (container.children.length > 0) {
+                            log('✅ Widget DOM elements created', 'success');
+                        } else {
+                            log('⚠️ No DOM elements created in container', 'warning');
+                        }
+                    }, 1000);
+                    
+                } else {
+                    log('❌ Cannot test render - widget function not available', 'error');
+                }
+            } catch (error) {
+                log('❌ Error during widget render: ' + error.message, 'error');
+                log('Error details: ' + error.stack, 'error');
+            }
+        }
+        
+        // Enhanced error handling
+        window.addEventListener('error', function(e) {
+            log('❌ JavaScript Error: ' + e.message, 'error');
+            log('Error file: ' + e.filename + ':' + e.lineno, 'error');
+        });
+        
+        window.addEventListener('unhandledrejection', function(e) {
+            log('❌ Unhandled Promise Rejection: ' + e.reason, 'error');
+        });
+        
+        // Auto-run tests when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            log('🔄 Page loaded, starting diagnostics...', 'info');
+            
+            // Test 1: React
+            setTimeout(() => testReactLoaded(), 100);
+            
+            // Test 2: Widget
+            setTimeout(() => testWidgetLoaded(), 200);
+            
+            // Test 3: Auto-render attempt
+            setTimeout(() => {
+                log('🤖 Attempting auto-render...', 'info');
+                testRenderWidget();
+            }, 500);
+        });
+        
+        // Monitor network requests
+        const originalFetch = window.fetch;
+        window.fetch = function(...args) {
+            log('🌐 Network request: ' + args[0], 'info');
+            return originalFetch.apply(this, arguments)
+                .then(response => {
+                    if (!response.ok) {
+                        log('❌ Network error: ' + response.status + ' ' + response.statusText, 'error');
+                    } else {
+                        log('✅ Network success: ' + args[0], 'success');
+                    }
+                    return response;
+                })
+                .catch(error => {
+                    log('❌ Network failure: ' + error.message, 'error');
+                    throw error;
+                });
+        };
+        
+        // Log all console errors
+        const originalConsoleError = console.error;
+        console.error = function(...args) {
+            log('❌ Console Error: ' + args.join(' '), 'error');
+            return originalConsoleError.apply(console, arguments);
+        };
+    </script>
+</body>
+</html>

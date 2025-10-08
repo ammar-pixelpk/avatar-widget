@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Line Installation Demo</title>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .copy-btn:hover {
+            background: #3182ce;
+        }
+        
+        .step {
+            background: #f7fafc;
+            border-left: 4px solid #4299e1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .highlight {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+        
+        .demo-section {
+            background: #edf2f7;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 <span class="highlight">Ultra-Easy Installation</span></h1>
+            <p>Add AI chat to your website with just <strong>one line of code</strong>!</p>
+        </div>
+
+        <div class="step">
+            <h2>📋 Copy & Paste This Code</h2>
+            <p>Add this <strong>single line</strong> to your HTML file, right before the closing <code>&lt;/body&gt;</code> tag:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyToClipboard('one-liner')">Copy</button>
+<pre id="one-liner">&lt;script src="https://cdn.jsdelivr.net/gh/ammar-pixelpk/avatar-widget@main/dist/installer.js" data-knowledge-id="68e604b9028f2f5066e31678" data-avatar-id="Tyler-insuit-20220721" data-opening-message="Hello! How can I help you?"&gt;&lt;/script&gt;</pre>
+            </div>
+            
+            <p><strong>That's it!</strong> The widget will automatically appear in the bottom-right corner of your website.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Zero Configuration</h3>
+                <p>Just paste the code and it works instantly</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Auto-Styled</h3>
+                <p>Looks great on any website without CSS conflicts</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Responsive</h3>
+                <p>Works perfectly on desktop, tablet, and mobile</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🎯 Customization Options</h2>
+            <p>Customize the widget by changing the data attributes:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyToClipboard('customized')">Copy</button>
+<pre id="customized">&lt;script src="https://cdn.jsdelivr.net/gh/your-username/avatar-widget@latest/installer.js" 
+        data-knowledge-id="YOUR_KNOWLEDGE_ID"
+        data-avatar-id="Anna_public_3_20240108"
+        data-opening-message="Welcome! I'm Anna, how can I assist you?"
+        data-position="bottom-left"
+        data-theme="dark"&gt;&lt;/script&gt;</pre>
+            </div>
+            
+            <h3>Available Options:</h3>
+            <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+                <li><strong>data-knowledge-id:</strong> Your knowledge base ID (required)</li>
+                <li><strong>data-avatar-id:</strong> Avatar to use (Tyler, Anna, Susan, etc.)</li>
+                <li><strong>data-opening-message:</strong> Initial greeting</li>
+                <li><strong>data-position:</strong> bottom-right, bottom-left, top-right, top-left</li>
+                <li><strong>data-theme:</strong> light, dark</li>
+                <li><strong>data-size:</strong> small, medium, large</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h2>🔧 Alternative: Manual Installation</h2>
+            <p>For more control, you can manually include the files:</p>
+            
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyToClipboard('manual')">Copy</button>
+<pre id="manual">&lt;!-- In your &lt;head&gt; tag --&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ammar-pixelpk/avatar-widget@main/dist/widget.css"&gt;
+
+&lt;!-- Before closing &lt;/body&gt; tag --&gt;
+&lt;script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;
+&lt;script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/ammar-pixelpk/avatar-widget@main/dist/widget.umd.js"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+  window.renderAvatarWidget('ai-chat', {
+    knowledgeID: 'YOUR_KNOWLEDGE_ID',
+    avatarId: 'Tyler-insuit-20220721',
+    openingMessage: 'Hello! How can I help you?'
+  });
+&lt;/script&gt;
+
+&lt;div id="ai-chat" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"&gt;&lt;/div&gt;</pre>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>✅ Success Checklist</h2>
+            <p>After installation, you should see:</p>
+            <ul style="text-align: left; max-width: 400px; margin: 0 auto;">
+                <li>✅ Purple chat button in corner</li>
+                <li>✅ No console errors</li>
+                <li>✅ Widget opens when clicked</li>
+                <li>✅ Avatar loads and responds</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            
+            navigator.clipboard.writeText(text).then(function() {
+                const btn = element.parentElement.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.style.background = '#48bb78';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#4299e1';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
